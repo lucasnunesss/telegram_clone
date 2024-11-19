@@ -6,6 +6,7 @@ import NoSSR from "react-no-ssr";
 
 export function ThemeProvider(props) {
   const { children, ...rest } = props;
+
   return <NextThemesProvider {...rest}>
     <NoSSR>
       {children}

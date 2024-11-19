@@ -1,7 +1,7 @@
 import { icons } from "lucide-react";
 import "./globals.css";
 import {Space_Grotesk} from 'next/font/google'
-
+import { ThemeProvider } from "@/components/providers/theme-provider";
 const spaceGrotesk = Space_Grotesk({
   weight: ['300','400', '500', '600', '700'],
   subsets: ['latin'],
@@ -20,7 +20,14 @@ export default function RootLayout({ children }) {
       <body
         className={`${spaceGrotesk.variable} antialiased`}
         suppressHydrationWarning>
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
         {children}
+        </ThemeProvider>
       </body>
     </html>
   );

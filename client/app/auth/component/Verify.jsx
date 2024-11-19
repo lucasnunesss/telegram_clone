@@ -15,7 +15,9 @@ const Verify = () => {
   });
 
   const onSubmit = (data) => {
-    console.log(data); // Manipule os dados enviados pelo formulário
+   
+    window.open('/', '_self')
+    console.log(data); 
   };
 
   return (
@@ -27,15 +29,12 @@ const Verify = () => {
       <form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-2">
       <Label>Email</Label>
         <Input  {...register("email", {
-          required: {
-            value: true,
-            message: "Email is required"
-          },
+    
           pattern: {
             value:  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
             message: "Invalid email format"
           },
-        })} placeholder='info@gmail.ac' disabled className="h-10 bg-secondary" />
+        })} placeholder='info@gmail.ac' disabled value={email} className="h-10 bg-secondary" />
       { isSubmitted && errors?.email && <p className='startup-form_error'>{errors?.email?.message}</p>}
         <Label>One-Time Password</Label>
         <Controller

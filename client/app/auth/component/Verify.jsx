@@ -5,7 +5,9 @@ import { Button } from "@/components/ui/button";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-label";
+import { useAuth } from "@/hooks/use-auth";
 const Verify = () => {
+  const {email} = useAuth()
   const { register, control, handleSubmit, formState: { errors, isSubmitted } } = useForm({
     defaultValues: {
       email: ""
@@ -33,7 +35,7 @@ const Verify = () => {
             value:  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
             message: "Invalid email format"
           },
-        })} placeholder='info@gmail.ac' className="h-10 bg-secondary" />
+        })} placeholder='info@gmail.ac' disabled className="h-10 bg-secondary" />
       { isSubmitted && errors?.email && <p className='startup-form_error'>{errors?.email?.message}</p>}
         <Label>One-Time Password</Label>
         <Controller
@@ -46,6 +48,7 @@ const Verify = () => {
               value: 6,
               message: "The OTP must be 6 characters long",
             },
+            
           }}
           render={({ field }) => (
             <InputOTP maxLength={6} className="w-full" pattern={REGEXP_ONLY_DIGITS} {...field}>

@@ -2,9 +2,11 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useAuth } from "@/hooks/use-auth";
 import { useForm } from "react-hook-form";
 
 const Signin = () => {
+    const {setEmail, setStep} = useAuth()
     const form = useForm({
       defaultValues: {
         email: ""
@@ -15,7 +17,8 @@ const Signin = () => {
     const {errors} = formState
 
     function onSubmit(values){
-      console.log(values)
+      setStep('verify')
+      setEmail(values.email)
     }
 
 

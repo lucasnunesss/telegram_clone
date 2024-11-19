@@ -2,12 +2,13 @@
 
 import Signin from "./Signin"
 import Verify from "./Verify"
-
+import { useAuth } from '@/hooks/use-auth'
 const State = () => {
+  const {step} = useAuth()
   return (
     <>
-      {/* <Signin /> */}
-      <Verify />
+      {step === 'login' && <Signin />}
+      {step === 'verify' && <Verify />} 
     </>
   )
 }

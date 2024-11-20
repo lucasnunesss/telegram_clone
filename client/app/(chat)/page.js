@@ -1,9 +1,20 @@
+'use client'
 import { Loader2 } from "lucide-react"
-
 import ContactList from "./components/contact-list"
+import {useCurrentContact} from "@/hooks/use-current"
+import { useRouter } from "next/navigation"
+import { useEffect } from "react"
+import AddContact from "./components/add-contact"
 
 
 const HomePage = () => {
+  const {currentContact} = useCurrentContact();
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace('/')
+  }, [])
+
   return (
     <>
     <div className="w-80 h-screen border-r fixed inset-0 z-50">
@@ -17,6 +28,12 @@ const HomePage = () => {
         <ContactList contacts={contacts} />
     </div>
     {/* Chat area */}
+    <div className="pl-80 w-full">
+        {/* ADD CONTACT */}
+        {!currentContact?._id && <AddContact />}
+
+        {currentContact?._id && <div>Chat</div>}
+    </div>
     </>
   )
 }

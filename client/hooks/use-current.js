@@ -1,10 +1,7 @@
-
-
 import { useState } from "react"
+import { create } from "zustand"
 
-const useCurrentContact = () => {
-  const [currentContact, setCurrentContact] = useState(null)
-  return {currentContact, setCurrentContact}
-}
-
-export default useCurrentContact
+export const useCurrentContact = create((set) => ({
+  currentContact: null,
+  setCurrentContact: contact => set({currentContact: contact})
+}))

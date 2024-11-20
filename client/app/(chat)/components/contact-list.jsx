@@ -4,7 +4,7 @@ import Settings from './Settings'
 import { Input } from '@/components/ui/input'
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { useRouter } from 'next/navigation'
-import useCurrentContact from '@/hooks/use-current'
+import {useCurrentContact} from '@/hooks/use-current'
 import { cn } from '@/lib/utils'
 
 
@@ -16,7 +16,6 @@ const ContactList = ({contacts}) => {
   const renderContacts = (contact) => {
       const onChat = () => {
           if (currentContact?._id === contact._id) return
-          console.log("chatting with", contact.email)
           setCurrentContact(contact)
           router.push(`/?chat=${contact._id}`)
       }

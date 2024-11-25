@@ -5,6 +5,8 @@ import {useCurrentContact} from "@/hooks/use-current"
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
 import AddContact from "./components/add-contact"
+import TopChat from "./components/TopChat"
+import Chat from "./components/Chat"
 
 
 const HomePage = () => {
@@ -14,6 +16,10 @@ const HomePage = () => {
   useEffect(() => {
     router.replace('/')
   }, [])
+
+  const onCreateContact = (values) => {
+      // Api call to create contact
+  }
 
   return (
     <>
@@ -32,7 +38,12 @@ const HomePage = () => {
         {/* ADD CONTACT */}
         {!currentContact?._id && <AddContact />}
 
-        {currentContact?._id && <div>Chat</div>}
+        {currentContact?._id && <div className="w-full relative">
+            {/* TOP CHAT */}
+            <TopChat />
+            {/* Chat messages */}
+            <Chat />
+          </div>}
     </div>
     </>
   )

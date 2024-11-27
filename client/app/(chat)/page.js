@@ -7,18 +7,29 @@ import { useEffect } from "react"
 import AddContact from "./components/add-contact"
 import TopChat from "./components/TopChat"
 import Chat from "./components/Chat"
-
+import { useForm } from "react-hook-form"
 
 const HomePage = () => {
   const {currentContact} = useCurrentContact();
   const router = useRouter();
+  const form = useForm({
+    defaultValues: {
+      text: '',
+      image: ''
+    }
+  })
 
+  const {getValues} = form
   useEffect(() => {
     router.replace('/')
   }, [])
 
   const onCreateContact = (values) => {
       // Api call to create contact
+  }
+
+  const onSendMessage = (values) => {
+    console.log(values)
   }
 
   return (

@@ -1,5 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Button } from '@/components/ui/button'
 import { useCurrentContact } from '@/hooks/use-current'
+import { Settings2 } from 'lucide-react'
 import React from 'react'
 
 const TopChat = () => {
@@ -37,6 +39,9 @@ const TopChat = () => {
               </p>
           </div>
       </div>
+      <Button>
+        <Settings2 />
+      </Button>
     </div>
   )
 }

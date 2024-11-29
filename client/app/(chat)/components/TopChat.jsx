@@ -3,6 +3,14 @@ import { Button } from '@/components/ui/button'
 import { useCurrentContact } from '@/hooks/use-current'
 import { Settings2 } from 'lucide-react'
 import React from 'react'
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 
 const TopChat = () => {
   const {currentContact} = useCurrentContact()
@@ -39,9 +47,31 @@ const TopChat = () => {
               </p>
           </div>
       </div>
-      <Button>
-        <Settings2 />
-      </Button>
+
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button>
+            <Settings2 />
+          </Button>
+        </SheetTrigger>
+        <SheetContent>
+          <SheetHeader>
+            <SheetTitle />
+          </SheetHeader>
+          <div className='mx-auto w-1/2 h-36 relative'>
+              <Avatar className='w-full h-36'>
+                  <AvatarImage src={currentContact?.avatar} alt={currentContact?.email}
+                    className='object-cover'
+                  />
+                  <AvatarFallback className='text-6xl uppercase font-spaceGrotesk'>
+                    {currentContact?.email[0]}
+                  </AvatarFallback>
+              </Avatar>
+          </div>
+        </SheetContent>
+      </Sheet>
+
+    
     </div>
   )
 }

@@ -30,9 +30,12 @@ const Chat = ({messages}) => {
       {/* <MessageCard isReceived /> */}
 
       {/* Start Conversation*/}
+      {/* <div className='w-full h-[88vh] flex items-center justify-center'>
+          <div className='text-[100px] cursor-pointer' onClick={() => onSendMessage({text: '🖐️'})}>🖐️</div>
+      </div> */}
       
       {/* Message Input */}
-      {/* <form onSubmit={handleSubmit(onSendMessage)} className='w-full flex relative'>
+      <form onSubmit={handleSubmit(onSendMessage)} className='w-full flex relative'>
           <Button size={'icon'} type='button' variant={'secondary'}>
             <Paperclip />
           </Button>
@@ -56,7 +59,7 @@ const Chat = ({messages}) => {
           <Button type='submit' size={'icon'}>
             <Send />
           </Button>
-      </form> */}
+      </form>
     </div>
   )
 }

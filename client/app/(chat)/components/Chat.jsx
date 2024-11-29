@@ -1,11 +1,12 @@
 import MessageCard from '@/components/cards/MessageCard'
 import ChatLoading from '@/components/loadings/ChatLoading'
 import { Button } from '@/components/ui/button'
-import { Paperclip } from 'lucide-react'
+import { Input } from '@/components/ui/input'
+import { Paperclip, Send, Smile } from 'lucide-react'
 import React from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 
-const Chat = () => {
+const Chat = ({messages}) => {
   const form = useForm({
     defaultValues: {
       text: '',
@@ -13,7 +14,7 @@ const Chat = () => {
     }
   })
 
-  const {handleSubmit} = form
+  const {handleSubmit, control} = form
   const onSendMessage = (values) => {
     console.log(values)
   }
@@ -23,13 +24,39 @@ const Chat = () => {
       {/* <ChatLoading /> */}
       {/* Messages */}
       {/* <MessageCard isReceived /> */}
-      {/* Message input */}
+    
 
-      <form onSubmit={handleSubmit(onSendMessage)} className='w-full flex relative'>
+
+      {/* <MessageCard isReceived /> */}
+
+      {/* Start Conversation*/}
+      
+      {/* Message Input */}
+      {/* <form onSubmit={handleSubmit(onSendMessage)} className='w-full flex relative'>
           <Button size={'icon'} type='button' variant={'secondary'}>
             <Paperclip />
           </Button>
-      </form>
+
+          <Controller
+          name="otp"
+          control={control}
+          render={({ field }) => (
+            <Input
+            className='bg-secondary border-l border-l-muted-foreground border-r border-r-muted-foreground h-9'
+            placeholder="Type a message"
+            value={field.value}
+            onBlur={() => field.onBlur()}
+            onChange={(e) => field.onChange(e.target.value)}
+            />
+          )} />
+
+          <Button size='icon' type='button' variant='secondary'>
+              <Smile />
+          </Button>
+          <Button type='submit' size={'icon'}>
+            <Send />
+          </Button>
+      </form> */}
     </div>
   )
 }

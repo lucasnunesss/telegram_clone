@@ -53,7 +53,7 @@ const HomePage = () => {
             {/* TOP CHAT */}
             <TopChat />
             {/* Chat messages */}
-            <Chat />
+            <Chat messages={messages} />
           </div>}
     </div>
     </>
@@ -67,7 +67,11 @@ const contacts = [
   {email: 'paul@gmail.com', _id: '3'},
   {email: 'gabriela@gmail.com', _id: '4'},
   {email: 'jorge@gmail.com', _id: '5'},
-
 ]
 
+const messages = [
+  {text: 'Hello World', _id: '1'},
+  {text: 'My work', _id: '2'},
+  {text: 'Java', _id: '3'},
+]
 export default HomePage

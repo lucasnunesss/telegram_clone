@@ -62,7 +62,7 @@ const HomePage = () => {
 
 
 const contacts = [
-  {email: 'john@gmail.com', _id: '1', avatar: 'https://github.com/shadcn.png'},
+  {email: 'john@gmail.com', _id: '1', avatar: 'https://github.com/shadcn.png', firstName: 'John', lastName: 'Doe', bio: 'Proin lorem neque, luctus eu ipsum sed, pulvinar luctus odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tempor nisl arcu, eget sagittis risus aliquam at. Vivamus at nisi eros.'},
   {email: 'anna@gmail.com', _id: '2'},
   {email: 'paul@gmail.com', _id: '3'},
   {email: 'gabriela@gmail.com', _id: '4'},

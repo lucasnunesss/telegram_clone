@@ -11,6 +11,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { Separator } from '@radix-ui/react-separator'
+import Image from 'next/image'
 
 const TopChat = () => {
   const {currentContact} = useCurrentContact()
@@ -67,6 +69,44 @@ const TopChat = () => {
                     {currentContact?.email[0]}
                   </AvatarFallback>
               </Avatar>
+          </div>
+          <Separator className='my-2' />
+          <h1 className='text-center capitalize font-spaceGrotesk text-xl'>{currentContact?.email}</h1>
+
+          <div className='flex flex-col space-y-1'>
+              {currentContact?.firstName && (
+                <div className='flex items-center gap-1 mt-4'>
+                    <p className='font-spaceGrotesk'>First Name:</p>
+                    <p className='font-spaceGrotesk text-muted-foreground'>{currentContact?.firstName}</p>
+                </div>
+              )}
+              {currentContact?.lastName && (
+                <div className='flex items-center gap-1 mt-4'>
+                  <p className='font-spaceGrotesk'>Last Name:</p>
+                  <p className='font-spaceGrotesk text-muted-foreground'>{currentContact?.lastName}</p>
+              </div>
+              )}
+              {currentContact?.bio && (
+                     <div className='flex items-center gap-1 mt-4'>
+                     <p className='font-spaceGrotesk'>
+                      About: <span className='font-spaceGrotesk text-muted-foreground'>{currentContact?.bio}</span>
+                     </p>
+                 </div>
+              )}
+
+          <Separator className='my-2' />
+
+          <h2 className='text-xl'>Image</h2>
+          <div className='flex flex-col space-y-2'>
+            <div className='w-full h-36 relative'>
+              <Image
+                src={'https://github.com/shadcn.png'}
+                alt={'https://github.com/shadcn.png'}
+                fill
+                className='object-cover rounded-md'
+              />
+            </div>
+          </div>
           </div>
         </SheetContent>
       </Sheet>

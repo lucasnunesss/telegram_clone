@@ -5,8 +5,18 @@ import { Input } from '@/components/ui/input'
 import { Paperclip, Send, Smile } from 'lucide-react'
 import React from 'react'
 import { useForm, Controller } from 'react-hook-form'
+import data from '@emoji-mart/data'
+import Picker from '@emoji-mart/react'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import { ModeToggle } from '@/components/shared/mode-toggle'
+import { useTheme } from 'next-themes'
 
 const Chat = ({messages}) => {
+  const {resolvedTheme} = useTheme()
   const form = useForm({
     defaultValues: {
       text: '',
@@ -17,6 +27,10 @@ const Chat = ({messages}) => {
   const {handleSubmit, control} = form
   const onSendMessage = (values) => {
     console.log(values)
+  }
+
+  const handleEmojiSelect = (emoji) => {
+    me
   }
   return (
     <div className='flex flex-col justify-end z-40 min-h-[92vh]'>
@@ -53,12 +67,24 @@ const Chat = ({messages}) => {
             />
           )} />
 
-          <Button size='icon' type='button' variant='secondary'>
-              <Smile />
-          </Button>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button size='icon' type='button' variant='secondary'>
+                <Smile />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="p-0 border-none rounded-md absolute right-6 bottom-0">
+                <Picker data={data} theme={resolvedTheme==='dark' ? 'dark' : 'light'} onEmojiSelect={(emoji) => handleEmojiSelect(emoji)} />
+            </PopoverContent>
+          </Popover>
+
+
+     
           <Button type='submit' size={'icon'}>
             <Send />
           </Button>
+
+          <ModeToggle />
       </form>
     </div>
   )

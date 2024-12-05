@@ -3,8 +3,8 @@ import ChatLoading from '@/components/loadings/ChatLoading'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Paperclip, Send, Smile } from 'lucide-react'
-import React from 'react'
-import { useForm, Controller } from 'react-hook-form'
+import React, { useRef } from 'react'
+import { useForm, Controller, get } from 'react-hook-form'
 import data from '@emoji-mart/data'
 import Picker from '@emoji-mart/react'
 import {
@@ -15,7 +15,8 @@ import {
 import { ModeToggle } from '@/components/shared/mode-toggle'
 import { useTheme } from 'next-themes'
 
-const Chat = ({messages}) => {
+const Chat = () => {
+  const inputRef = useRef(null)
   const {resolvedTheme} = useTheme()
   const form = useForm({
     defaultValues: {
@@ -24,14 +25,25 @@ const Chat = ({messages}) => {
     }
   })
 
-  const {handleSubmit, control} = form
+  const {handleSubmit, control, getValues, setValue} = form
   const onSendMessage = (values) => {
-    console.log(values)
+   
+    console.log("valor", values)
   }
-
   const handleEmojiSelect = (emoji) => {
-    me
-  }
+    const input = inputRef.current;
+    if(!input) return
+    const currentValue = getValues('text');
+    const start = input.selectionStart ?? 0
+    const end = input.selectionEnd ?? 0
+
+    const newText = currentValue.slice(0, start) + emoji.native + currentValue.slice(end)
+    setValue('text', `${newText}`);
+
+  
+  };
+
+
   return (
     <div className='flex flex-col justify-end z-40 min-h-[92vh]'>
       {/* Loading */}
@@ -55,7 +67,7 @@ const Chat = ({messages}) => {
           </Button>
 
           <Controller
-          name="otp"
+          name="text"
           control={control}
           render={({ field }) => (
             <Input
@@ -64,6 +76,7 @@ const Chat = ({messages}) => {
             value={field.value}
             onBlur={() => field.onBlur()}
             onChange={(e) => field.onChange(e.target.value)}
+            ref={inputRef}
             />
           )} />
 
